@@ -115,7 +115,7 @@ workbox.routing.registerRoute(
             }
             return false
         },
-        new ComboCacheFirst({
+        new CacheFirst({
             cacheName: CACHE_NAME.SCRIPT,
             plugins: [
                 commonCacheablePlugin,
