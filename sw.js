@@ -74,9 +74,10 @@ class ComboCacheFirst extends Strategy {
                         Promise.all(urls.map(url => urlResponseMap.get(url)).map((item) => {
                             return item.text()
                         })).then((bodies) => {
-                            const header = {status: '200', 'Content-Type': 'application/javascript; charset=utf-8', 'content-encoding': 'gzip'}
+                            
+                            const headers = {status: '200', 'Content-Type': 'application/javascript; charset=utf-8', 'content-encoding': 'gzip', 'fromSw': 'true'}
                             const body = bodies.join('')
-                            const response = new Response(body, header)
+                            const response = new Response(body, {headers})
                             resolve(response)
                         }).catch(e => {
                             console.log(e)
