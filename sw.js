@@ -42,11 +42,14 @@ class ComboCacheFirst extends Strategy {
         const comboUrl = request.url
         const comboUrlSplited = comboUrl.split('??')
         const urls = comboUrlSplited[1].split(',').map(item => `${comboUrlSplited[0]}${item}`)
+        const start = Date.now()
+        console.time('11111' + start)
         return new Promise((resolve, reject) => {
             caches.open(CACHE_NAME.SCRIPT).then((cache) => {
                 return Promise.all(urls.map(url => {
                     return cache.match(url)
                 })).then(responses => {
+                    console.timeEnd('11111' + start)
                     const notCachedUrls = []
                     const urlResponseMap = new Map()
                     for (let i = 0; i < responses.length; i++) {
@@ -71,10 +74,11 @@ class ComboCacheFirst extends Strategy {
                             const response = fetchedResponses[i]
                             urlResponseMap.set(url, response)
                         }
+                        console.time('22222' + start)
                         Promise.all(urls.map(url => urlResponseMap.get(url)).map((item) => {
                             return item.text()
                         })).then((bodies) => {
-                            
+                            console.timeEnd('22222' + start)
                             const headers = {status: '200', 'Content-Type': 'application/javascript; charset=utf-8', 'content-encoding': 'gzip', 'fromSw': 'true'}
                             const body = bodies.join('')
                             const response = new Response(body, {headers})
@@ -151,6 +155,3 @@ workbox.routing.registerRoute(
             ]
         })
     )
-
-skipWaiting()
-clientsClaim()
