@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <script type="module">
+            import {Workbox} from './workbox-window.prod.mjs';
+            if ('serviceWorker' in navigator) {
+                const wb = new Workbox('./sw.js');
+
+                wb.addEventListener('activated', (event) => {
+                if (!event.isUpdate) {
+                    console.log('Service worker activated for the first time!');
+                }
+                });
+
+                wb.register();
+            }
+        </script>
+        <link rel='stylesheet' type='text/css' crossorigin="anonymous" href='https://laz-g-cdn.alicdn.com/lzdmod/lzdrwb-base-style/1.0.4/base.css' />
+        <script>
+            const script = document.createElement('script')
+            script.type = 'text/javascript'
+            script.onload = function() {
+                console.timeEnd('script')
+            }
+            script.src = 'https://g.alicdn.com/??mui/feloader/5.0.5/feloader-min.js,code/npm/@ali/gcom-gcp-capability-integration/1.0.9/index.js,code/npm/@ali/gcom-gcp-general-function/1.0.1/index.js,code/npm/@ali/gcom-gcp-render-container/1.0.7/index.js,code/npm/@ali/gcom-gcp-communication/1.0.28/index.js,rax-pkg/universal-env/3.2.2/index.js,code/npm/@ali/pcom-mtop/3.1.2/index.js,code/npm/@ali/pcom-fetch/2.0.8/index.js,code/npm/@ali/gcom-pagebuilder-j-cookie/5.0.5/index.js,code/npm/@ali/gcom-pagebuilder-query-string/5.0.3/index.js,code/npm/@ali/gcom-gcp-shim/1.0.25/index.js,pmod/base/5.2.42/utils.js,rax-pkg/rax/1.1.2/index.js,code/npm/@ali/gcom-pagebuilder-getelementbyid/0.0.1/index.js,rax-pkg/rax-text/1.2.1/index.js,rax-pkg/rax-refreshcontrol/1.0.0/index.js,rax-pkg/rax-find-dom-node/1.0.0/index.js,rax-pkg/rax-scrollview/2.0.0/index.js,code/npm/@ali/pcom-pull-to-refresh/0.0.3/index.js,code/npm/@ali/pcom-driver/0.0.16/index.js,code/npm/@ali/pcom-alienv/1.0.1/index.js,code/npm/@ali/pcom-devicelevel/1.0.8/index.js,rax-pkg/rax-view/1.0.1/index.js,rax-pkg/rax-image/1.1.0/index.js,rax-pkg/rax-picture/1.1.7/index.js,code/npm/@ali/pcom-appear/0.0.8/index.js,pmod/base/5.2.42/log.js,code/npm/@ali/gcom-gcp-render-venue-convention/1.1.22/index.js,code/npm/@ali/gcom-gcp-lzd-render/1.1.69/index.js,code/npm/@ali/pcom-regenerator-runtime/1.0.2/index.js'
+            document.getElementsByTagName('head')[0].appendChild(script)
+            console.time('script')
+        </script>
+    </head>
+    <body>
+        Hello World!
+        <image crossorigin="anonymous" src='https://id-test-11.slatic.net/shop/ca551389cb491e9e3a2c4cdb2de859f4.png' height="300" width='300'/>
+        <script crossorigin="anonymous" src='https://g.alicdn.com/??code/npm/@ali/lzdrwb-banner/1.1.4/index.js,code/npm/@ali/lzdrwb-wysiwyg/1.3.4/index.js,code/npm/@ali/gcom-lzd-components-base/1.0.44/index.js,code/npm/@ali/flute-i18n/1.1.0/index.js,rax-pkg/universal-toast/1.2.3/index.js,code/npm/@ali/lzdrwb-voucher/1.2.13/index.js,code/npm/@ali/lzdrwb-hotdeal-product3-in-a-row/1.1.6/index.js,code/npm/@ali/pcom-tmg-picture/5.1.6/index.js,code/npm/@ali/lzdrwb-x-banner/1.5.0/index.js,code/npm/@ali/gcom-pagebuilder-slider/5.0.6/index.js,code/npm/@ali/pcom-fetch/2.0.9/index.js,code/npm/@ali/universal-windvane/1.3.0/index.js,code/npm/@ali/pcom-tracker-link/0.3.12/index.js,rax-pkg/rax-link/1.1.1/index.js,code/npm/@ali/lzdrwb-product3-in-a-row/1.3.10/index.js,code/npm/@ali/lzdrwb-slider-product3-in-a-row/1.1.5/index.js'/>
+        <script crossorigin="anonymous" src="https://lzd-kangaroo.alicdn.com/bottom/aHR0cHM6Ly9wYWdlcy5sYXphZGEuY28uaWQvd293L2djcC9yb3V0ZS9sYXphZGEvaWQvdXByXzEwMDAzNDVfbGF6YWRhL2NoYW5uZWwvaWQvdXByLXJvdXRlci9pZF91cHI/d2hfcGlkPSUyRmxhemFkYSUyRmRhaWx5Y2FtcGFpZ24lMkZpZCUyRkZBLUZhc2hpb250YXN0aWNTYWxlQWtoaXJUYWh1bi1EZWNlbWJlcjIwMjAlMkZmYXNoaW9udGFzdGljc2FsZWFraGlydGFodW4=/currency=idr/device=phone/excludes=1728796330;5728215190;6467994610;7472867450;8576132180;8826172350;9318554910/language=id/regionId=id/data.jsonp?callback=callback_aHR0cHM6Ly9wYWdlcy5sYXphZGEuY28uaWQvd293L2djcC9yb3V0ZS9sYXphZGEvaWQvdXByXzEwMDAzNDVfbGF6YWRhL2NoYW5uZWwvaWQvdXByLXJvdXRlci9pZF91cHI/d2hfcGlkPSUyRmxhemFkYSUyRmRhaWx5Y2FtcGFpZ24lMkZpZCUyRkZBLUZhc2hpb250YXN0aWNTYWxlQWtoaXJUYWh1bi1EZWNlbWJlcjIwMjAlMkZmYXNoaW9udGFzdGljc2FsZWFraGlydGFodW4=_currency_idr_device_phone_excludes_1728796330;5728215190;6467994610;7472867450;8576132180;8826172350;9318554910_language_id_regionId_id"/>
+    </body>
+</html>
