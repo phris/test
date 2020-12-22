@@ -1,5 +1,5 @@
 importScripts('./workbox-sw.js')
-workbox.setConfig({debug: true})
+workbox.setConfig({debug: false})
 
 workbox.loadModule('workbox-strategies')
 workbox.loadModule('workbox-routing')
