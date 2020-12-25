@@ -5,11 +5,13 @@ workbox.loadModule('workbox-strategies')
 workbox.loadModule('workbox-routing')
 workbox.loadModule('workbox-expiration')
 workbox.loadModule('workbox-cacheable-response')
+workbox.loadModule('workbox-streams')
 
 const {skipWaiting, clientsClaim} = workbox.core
 const {CacheableResponsePlugin} = workbox.cacheableResponse
 const {ExpirationPlugin} = workbox.expiration
 const {Strategy, CacheFirst} = workbox.strategies
+const {concatenate} = workbox.streams
 
 const REQUEST_DESTINATION = {
     SCRIPT: 'script',
@@ -42,6 +44,8 @@ class ComboCacheFirst extends Strategy {
         const comboUrl = request.url
         const comboUrlSplited = comboUrl.split('??')
         const urls = comboUrlSplited[1].split(',').map(item => `${comboUrlSplited[0]}${item}`)
+
+
         const start = Date.now()
         console.time('11111' + start)
         return new Promise((resolve, reject) => {
@@ -74,19 +78,22 @@ class ComboCacheFirst extends Strategy {
                             const response = fetchedResponses[i]
                             urlResponseMap.set(url, response)
                         }
-                        console.time('22222' + start)
-                        Promise.all(urls.map(url => urlResponseMap.get(url)).map((item) => {
-                            return item.blob()
-                        })).then((bodies) => {
-                            console.timeEnd('22222' + start)
-                            const headers = {status: '200', 'Content-Type': 'application/javascript; charset=utf-8', 'content-encoding': 'gzip', 'fromSw': 'true'}
-                            const body = new Blob(bodies)
-                            const response = new Response(body, {headers})
-                            resolve(response)
-                        }).catch(e => {
-                            console.log(e)
-                            resolve(handler.fetch(request))
+                        concatenate(urls.map(url => urlResponseMap.get(url))).then((done, stream) => {
+                            resolve(new Response(stream))
                         })
+                        // console.time('22222' + start)
+                        // Promise.all(urls.map(url => urlResponseMap.get(url)).map((item) => {
+                        //     return item.blob()
+                        // })).then((bodies) => {
+                        //     console.timeEnd('22222' + start)
+                        //     const headers = {status: '200', 'Content-Type': 'application/javascript; charset=utf-8', 'content-encoding': 'gzip', 'fromSw': 'true'}
+                        //     const body = new Blob(bodies)
+                        //     const response = new Response(body, {headers})
+                        //     resolve(response)
+                        // }).catch(e => {
+                        //     console.log(e)
+                        //     resolve(handler.fetch(request))
+                        // })
                     }).catch(e => {
                         console.log(e)
                         resolve(handler.fetch(request))
@@ -115,7 +122,7 @@ workbox.routing.registerRoute(
             }
             return false
         },
-        new CacheFirst({
+        new ComboCacheFirst({
             cacheName: CACHE_NAME.SCRIPT,
             plugins: [
                 commonCacheablePlugin,
@@ -155,3 +162,6 @@ workbox.routing.registerRoute(
             ]
         })
     )
+
+skipWaiting()
+clientsClaim()
